@@ -1,0 +1,65 @@
+.user-home-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .policy-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .policy-card h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .user-home-container h2,
+  .user-home-container h3 {
+    color: #333;
+  }
+  
+  .user-home-container p {
+    color: #555;
+  }
+  
+  .user-home-container button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff8c00; /* Sunset color */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .user-home-container button:hover {
+    background-color: #ff4500; /* Darker shade of sunset color on hover */
+  }
+
+
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+  

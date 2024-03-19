@@ -1,0 +1,48 @@
+
+.claim-application-container {
+  margin: 20px;
+}
+
+.claim-application-container h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.claims-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.claims-list li {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.claims-list li div {
+  margin-bottom: 5px;
+}
+
+.claims-list li div button {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.claims-list li div button:last-child {
+  margin-right: 0;
+}
+
+.home-button {
+  float: right;
+  margin-top: -40px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+}
