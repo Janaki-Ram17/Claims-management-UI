@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 .policy-application-container {
   position: relative;
   width: 100%;
@@ -7,7 +9,9 @@
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
 }
+
 .home-button {
   position: absolute;
   top: 50px;
@@ -15,20 +19,23 @@
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #ff8c00;
   color: #fff;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .home-button:hover {
-  background-color: #0056b3;
+  background-color: #ff8c00;
 }
+
 .policy-application-container h2 {
   font-size: 24px;
   text-align: center;
   color: #333;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .policy-selection {
@@ -39,13 +46,39 @@
   margin-bottom: 15px;
 }
 
-.policy-selection input[type="text"],
-.policy-selection textarea {
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input-group input[type="number"],
+.input-group textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  transition: border-color 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input-group input[type="number"]:focus,
+.input-group textarea:focus {
+  border-color: #ff8c00;
+  outline: none;
+}
+
+.input-group input[type="number"]::placeholder,
+.input-group textarea::placeholder {
+  color: #aaa;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .apply-button {
@@ -53,13 +86,21 @@
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #ff8c00; /* Sunset color */
+  background-color: #ff8c00; 
   color: #fff;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .apply-button:hover {
-  background-color: #ff4500; /* Darker shade of sunset color on hover */
+  background-color: #ff4500; 
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }

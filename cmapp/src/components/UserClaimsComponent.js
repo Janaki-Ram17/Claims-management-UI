@@ -1,13 +1,13 @@
-// UserClaimsComponent.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const UserClaimsComponent = ({ userId }) => {
   const [claims, setClaims] = useState([]);
 
   useEffect(() => {
     // Fetch user's claims from the backend
-    axios.get(`/api/users/${userId}/claims`)
+    axios.get(`${API_BASE_URL}/users/${userId}/claims`)
       .then(response => {
         setClaims(response.data.claims);
       })

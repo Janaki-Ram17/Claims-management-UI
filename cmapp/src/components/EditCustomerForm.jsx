@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const EditCustomerForm = ({ customer, onClose }) => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const EditCustomerForm = ({ customer, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/users/${customer._id}`, formData);
+      await axios.put(`${API_BASE_URL}/users/${customer._id}`, formData);
       onClose(); // Close the edit form after successful submission
     } catch (error) {
       console.error('Error editing customer:', error);

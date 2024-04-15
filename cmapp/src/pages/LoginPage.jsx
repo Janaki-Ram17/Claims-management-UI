@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('user'); // Default to user login
+  const [userType, setUserType] = useState('user'); 
   const navigate = useNavigate(); // useNavigate hook
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); 
   
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      const response = await axios.post(`${API_BASE_URL}/users/login`, { email, password });
       if (response.status === 200) {
         const user = response.data.user;
         // Store user ID in local storage
@@ -22,13 +23,10 @@ const LoginPage = () => {
         console.log(user)
         
         if (userType === 'admin' && user.userType === 'admin') {
-          // Redirect to AdminDashboard if admin selected and user is admin
           navigate('/admin');
         } else if (userType === 'user' && user.userType === 'customer') {
-          // Redirect to home page if user selected and user is not admin
           navigate('/home');
         } else {
-          // Show error message if selected user type doesn't match user role
           console.error('Unauthorized access');
         }
       }

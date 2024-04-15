@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EditCustomerForm from '../components/EditCustomerForm';
-import './AdminDashboard.css'; // Import the CSS file
+import './AdminDashboard.css'; 
+const API_BASE_URL ='http://localhost:5000/api';
 
 const AdminDashboard = () => {
   const [customers, setCustomers] = useState([]);
@@ -10,10 +11,10 @@ const AdminDashboard = () => {
   const [policies, setPolicies] = useState([]);
   const [claims, setClaims] = useState([]);
   const [editingCustomerId, setEditingCustomerId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch customers, policies, and claims when component mounts
     fetchUsers();
     fetchPolicies();
     fetchClaims();
@@ -21,7 +22,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users');
+      const response = await axios.get(`${API_BASE_URL}/users`);
       setCustomers(response.data.users);
     } catch (error) {
       console.error('Error fetching customers:', error);
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
 
   const fetchPolicies = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/policies');
+      const response = await axios.get(`${API_BASE_URL}/policies`);
       setPolicies(response.data.policies);
     } catch (error) {
       console.error('Error fetching policies:', error);
@@ -39,7 +40,7 @@ const AdminDashboard = () => {
 
   const fetchClaims = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/claims');
+      const response = await axios.get(`${API_BASE_URL}/claims`);
       setClaims(response.data.claims);
     } catch (error) {
       console.error('Error fetching claims:', error);
@@ -48,13 +49,22 @@ const AdminDashboard = () => {
 
   const handleViewCustomer = async (customerId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/customers/${customerId}`);
+      const response = await axios.get(`${API_BASE_URL}/customers/${customerId}`);
       const customer = response.data.customer;
       console.log('Customer Details:', customer);
       setCustomerDetails(customer);
     } catch (error) {
       console.error('Error viewing customer:', error);
     }
+  };
+  const filteredCustomers = customers.filter(
+    (customer) =>
+      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer._id.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const handleEditCustomer = (customerId) => {
@@ -101,7 +111,7 @@ const AdminDashboard = () => {
   const handleLogout = () => {
     // Handle logout logic here
     console.log('Logging out');
-    navigate('/login'); // Redirect to login page
+    navigate('/'); 
   };
 
   return (
@@ -126,18 +136,31 @@ const AdminDashboard = () => {
 
       <div>
         <h3>Customers</h3>
+        <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by name or ID"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="search-input"
+        />
+      </div>
         <button className="add-customer-button" onClick={handleAddCustomer}>Add New Customer</button>
-        <ul>
-          {customers.map((customer) => (
-            <li key={customer._id}>
-              <div>Customer Name: {customer.name}</div>
-              <div>Customer ID: {customer._id}</div>
-              <button onClick={() => handleViewCustomer(customer._id)}>View</button>
-              <button onClick={() => handleEditCustomer(customer._id)}>Edit</button>
-              <button onClick={() => handleDeleteCustomer(customer._id)}>Delete</button>
-            </li>
+        <div className="customer-list">
+          {filteredCustomers.map((customer) => (
+            <div className="customer-card" key={customer._id}>
+              <div className="customer-details">
+                <div>Customer Name: {customer.name}</div>
+                <div>Customer ID: {customer._id}</div>
+              </div>
+              <div className="customer-actions">
+                <button onClick={() => handleViewCustomer(customer._id)}>View</button>
+                <button onClick={() => handleEditCustomer(customer._id)}>Edit</button>
+                <button onClick={() => handleDeleteCustomer(customer._id)}>Delete</button>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       {/* Modal or separate page to display customer details */}

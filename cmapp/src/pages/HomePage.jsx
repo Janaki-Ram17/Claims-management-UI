@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PolicyCard from '../components/PolicyCard';
 import './HomePage.css';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const HomePage = () => {
   const [userPolicies, setUserPolicies] = useState([]);
@@ -13,7 +14,7 @@ const HomePage = () => {
   const fetchUserPolicies = async () => {
     try {
       const userId = localStorage.getItem('userId');
-      const response = await axios.get(`http://localhost:5000/api/policies/${userId}`);
+      const response = await axios.get(`${API_BASE_URL}/policies/${userId}`);
       if (response.status === 200) {
         setUserPolicies(response.data.policies);
         console.log(response.data)
@@ -35,9 +36,7 @@ const HomePage = () => {
   };
 
   const handleLogout = () => {
-    // Perform logout actions here, such as removing user data from localStorage
     localStorage.removeItem('userId');
-    // Redirect to the login page or any other desired page after logout
     navigate('/');
   };
   

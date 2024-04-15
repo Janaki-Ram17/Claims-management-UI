@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const PolicyForm = () => {
   const [policyName, setPolicyName] = useState('');
@@ -11,7 +12,7 @@ const PolicyForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/policies/add', {
+      await axios.post(`${API_BASE_URL}/policies/add`, {
         policyName,
         customerId,
         validity,
@@ -45,7 +46,7 @@ const ClaimForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/claims/add', {
+      await axios.post(`${API_BASE_URL}/claims/add`, {
         policyId,
         claimAmount,
         reason

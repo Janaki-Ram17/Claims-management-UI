@@ -10,6 +10,7 @@ import PolicyRequestsPage from './pages/PolicyRequestsPage';
 import ClaimRequestsPage from './pages/ClaimRequestsPage'; 
 
 const App = () => {
+  
   return (
     <Router>
       <Routes>

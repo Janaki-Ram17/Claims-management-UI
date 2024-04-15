@@ -1,99 +1,139 @@
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .logout-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #ff8c00; /* Sunset color */
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .logout-button:hover {
-    background-color: #ff4500; /* Darker shade of sunset color on hover */
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 .admin-dashboard-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-dashboard-container h2 {
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-  }
-  
-  .admin-dashboard-container button {
-    margin-right: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #ff8c00; /* Sunset color */
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .admin-dashboard-container button:hover {
-    background-color: #ff4500; /* Darker shade of sunset color on hover */
-  }
-  
-  .admin-dashboard-container ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .admin-dashboard-container li {
-    margin-bottom: 10px;
-  }
-  
-  .admin-dashboard-container .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .admin-dashboard-container .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-    max-width: 400px;
-    border-radius: 8px;
-  }
-  
-  .admin-dashboard-container .close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .admin-dashboard-container .close:hover,
-  .admin-dashboard-container .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
+  width: 100%;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logout-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff8c00;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #ff4500;
+}
+
+.admin-dashboard-buttons {
+  margin-bottom: 20px;
+}
+
+.admin-dashboard-buttons button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff8c00;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-dashboard-buttons button:hover {
+  background-color: #ff4500;
+}
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.add-customer-button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff8c00;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-customer-button:hover {
+  background-color: #ff4500;
+}
+
+.customer-card {
+  border: 1px solid #ff8c00;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.customer-card:hover {
+  border-color: #ff4500;
+}
+
+.customer-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.customer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #ff8c00;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}

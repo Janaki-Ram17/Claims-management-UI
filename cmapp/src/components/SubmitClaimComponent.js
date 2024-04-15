@@ -1,6 +1,6 @@
-// SubmitClaimComponent.js
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const SubmitClaimComponent = ({ policyId, userId }) => {
   const [claimAmount, setClaimAmount] = useState('');
@@ -8,7 +8,7 @@ const SubmitClaimComponent = ({ policyId, userId }) => {
 
   const handleSubmit = () => {
     // Submit claim to the backend
-    axios.post(`/api/claims/add`, { policyId, customerId: userId, claimAmount, reason })
+    axios.post(`${API_BASE_URL}/claims/add`, { policyId, customerId: userId, claimAmount, reason })
       .then(response => {
         // Handle success
       })

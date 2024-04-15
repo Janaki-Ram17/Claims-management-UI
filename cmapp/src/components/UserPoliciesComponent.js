@@ -1,13 +1,14 @@
 // UserPoliciesComponent.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const UserPoliciesComponent = ({ userId }) => {
   const [policies, setPolicies] = useState([]);
 
   useEffect(() => {
     // Fetch user's policies from the backend
-    axios.get(`/api/users/${userId}/policies`)
+    axios.get(`${API_BASE_URL}/users/${userId}/policies`)
       .then(response => {
         setPolicies(response.data.policies);
       })

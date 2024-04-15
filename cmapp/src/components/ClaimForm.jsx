@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../components/ClaimApplication.css'; // Import the ClaimApplication CSS file
-import './ClaimForm.css'; // Import the ClaimForm CSS file
+import '../components/ClaimApplication.css'; 
+import './ClaimForm.css'; 
+const API_BASE_URL ='http://localhost:5000/api';
 
 const ClaimForm = () => {
   const [policyId, setPolicyId] = useState('');
   const [claimAmount, setClaimAmount] = useState('');
   const [reason, setReason] = useState('');
+  const [customerId, setCustomerId] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate(); 
-
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -21,29 +22,36 @@ const ClaimForm = () => {
     if (policyIdParam) {
       setPolicyId(policyIdParam);
     }
+
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      setCustomerId(userId);
+    }
   }, [location.search]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!policyId || !claimAmount || !reason) {
+    if (!policyId || !claimAmount || !reason || !customerId) {
       setError('Please fill in all fields');
       return;
     }
     setLoading(true);
     setError(null);
+    
     try {
-      const userId = localStorage.getItem('userId');
       const token = localStorage.getItem('token');
-      const response = await axios.post(`http://localhost:5000/api/claims/${userId}`, {
+      const userId = localStorage.getItem('userId');
+      const response = await axios.post(`${API_BASE_URL}/claims/${userId}`, {
         policyId,
         claimAmount,
-        reason
+        reason,
+        customerId
       }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log('Claim request added successfully:', response.data.newClaim);
+      console.log('Claim request added successfully', response.data.newClaim);
       alert('Claim application submitted successfully');
     } catch (error) {
       console.error('Error adding claim:', error);
@@ -56,7 +64,6 @@ const ClaimForm = () => {
   const goToHomePage = () => {
     navigate('/home'); 
   };
-
 
   return (
     <div className="claim-form-container">
@@ -74,6 +81,10 @@ const ClaimForm = () => {
         <label>
           Reason:
           <textarea value={reason} onChange={(e) => setReason(e.target.value)} />
+        </label>
+        <label>
+          Customer ID:
+          <input type="text" value={customerId} onChange={(e) => setCustomerId(e.target.value)} readOnly />
         </label>
         {error && <div className="error">{error}</div>}
         <button type="submit" disabled={loading}>Claim Policy</button>

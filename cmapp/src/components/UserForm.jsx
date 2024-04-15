@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const UserForm = ({ userId }) => {
   const [name, setName] = useState('');
@@ -10,14 +11,13 @@ const UserForm = ({ userId }) => {
 
   useEffect(() => {
     if (userId) {
-      // Fetch user details if userId is provided (for editing)
       fetchUserData();
     }
   }, [userId]);
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
+      const response = await axios.get(`${API_BASE_URL}/users/${userId}`);
       const userData = response.data.user;
       setName(userData.name);
       setEmail(userData.email);
@@ -41,11 +41,11 @@ const UserForm = ({ userId }) => {
     try {
       if (userId) {
         // Update user details if userId is provided (for editing)
-        await axios.put(`http://localhost:5000/api/users/${userId}`, userData);
+        await axios.put(`${API_BASE_URL}/users/${userId}`, userData);
         alert('User details updated successfully');
       } else {
         // Create new user if userId is not provided (for registration)
-        await axios.post('http://localhost:5000/api/users/register', userData);
+        await axios.post(`${API_BASE_URL}/users/register`, userData);
         alert('User registered successfully');
       }
     } catch (error) {
